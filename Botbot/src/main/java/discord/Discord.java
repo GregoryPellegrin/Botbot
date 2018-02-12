@@ -14,7 +14,7 @@ public class Discord
 	{
 		try
 		{
-			JDA jda = (JDA) new JDABuilder(AccountType.BOT).setToken(ApiKey.ApiKey.DISCORD).buildAsync();
+			JDA jda = (JDA) new JDABuilder(AccountType.BOT).setToken(ApiKey.ApiKey.DISCORD_TOKEN).buildAsync();
 			
 			jda.addEventListener(new Listener ());
 		}

@@ -47,7 +47,7 @@ public class WoW
 		try
 		{
 			HttpClient httpClient = HttpClientBuilder.create().build();
-			HttpResponse httpResponse = httpClient.execute(new HttpGet("https://" + regionName + ".api.battle.net/wow/character/" + serverName + "/" + playerName + "?fields=reputation%2Cpvp%2Cmounts&locale=fr_FR&apikey=" + ApiKey.ApiKey.BLIZZARD));
+			HttpResponse httpResponse = httpClient.execute(new HttpGet("https://" + regionName + ".api.battle.net/wow/character/" + serverName + "/" + playerName + "?fields=reputation%2Cpvp%2Cmounts&locale=fr_FR&apikey=" + ApiKey.ApiKey.BLIZZARD_API_KEY));
 			//Json.WoW wow = new Gson ().fromJson(EntityUtils.toString(httpResponse.getEntity()), Json.WoW.class);
 
 			return EntityUtils.toString(httpResponse.getEntity());

@@ -29,25 +29,32 @@ public class WoW
 			return exception.getMessage();
 		}
 	}
-
-	/*
-	 * name,realm,level,achievementPoints,totalHonorableKills,
-	 * statistics(standing=7),
-	 * mounts(numCollected),
-	 * pvp(brackets(ARENA_BRACKET_RBG(rating,seasonWon,seasonLost),
-	 *              ARENA_BRACKET_2v2(rating,seasonWon,seasonLost),
-	 *              ARENA_BRACKET_3v3(rating,seasonWon,seasonLost))),
-	 */
+	
 	public String getPlayerInfo (String regionName, String serverName, String playerName)
 	{
 		try
 		{
 			HttpClient httpClient = HttpClientBuilder.create().build();
-			HttpResponse httpResponse = httpClient.execute(new HttpGet("https://" + regionName + ".api.battle.net/wow/character/" + serverName + "/" + playerName + "?fields=reputation%2Cpvp%2Cmounts&locale=fr_FR&apikey=" + ApiKey.ApiKey.BLIZZARD_API_KEY));
-			//Json.WoW wow = new Gson ().fromJson(EntityUtils.toString(httpResponse.getEntity()), Json.WoW.class);
+			HttpResponse httpResponse = httpClient.execute(new HttpGet("https://" + regionName + ".api.battle.net/wow/character/" + serverName + "/" + playerName + "?fields=statistics%2Cpvp%2Cmounts&locale=fr_FR&apikey=" + ApiKey.ApiKey.BLIZZARD_API_KEY));
+			Json.WoW wow = new Gson ().fromJson(EntityUtils.toString(httpResponse.getEntity()).replaceAll("null", "0"), Json.WoW.class);
 
-			return EntityUtils.toString(httpResponse.getEntity());
-			//return wow.toString();
+			return wow.toString();
+		}
+		catch (IOException exception)
+		{
+			return exception.getMessage();
+		}
+	}
+	
+	public String getAvatar (String regionName, String serverName, String playerName)
+	{
+		try
+		{
+			HttpClient httpClient = HttpClientBuilder.create().build();
+			HttpResponse httpResponse = httpClient.execute(new HttpGet("https://" + regionName + ".api.battle.net/wow/character/" + serverName + "/" + playerName + "?locale=fr_FR&apikey=" + ApiKey.ApiKey.BLIZZARD_API_KEY));
+			Json.WoW wow = new Gson ().fromJson(EntityUtils.toString(httpResponse.getEntity()).replaceAll("null", "0"), Json.WoW.class);
+
+			return "http://render-" + regionName + wow.getAvatar();
 		}
 		catch (IOException exception)
 		{

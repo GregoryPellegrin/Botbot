@@ -26,9 +26,10 @@ public class Starcraft
 		{
 			HttpClient httpClient = HttpClientBuilder.create().build();
 			HttpResponse httpResponse = httpClient.execute(new HttpGet("https://" + regionName + ".api.battle.net/sc2/profile/" + profilId + "/1/" + playerName + "/?locale=en_US&apikey=tvx58hgpjg753jymgamk4q7pysrbrs5c"));
-			//Json.Starcraft starcraft = new Gson ().fromJson(EntityUtils.toString(httpResponse.getEntity()), Json.Starcraft.class);
-
-			return EntityUtils.toString(httpResponse.getEntity());
+			//Json.Starcraft starcraft = new Gson ().fromJson(EntityUtils.toString(httpResponse.getEntity()).replaceAll("null", "0"), Json.Starcraft.class);
+			System.out.println(EntityUtils.toString(httpResponse.getEntity()).replaceAll("null", "0"));
+			
+			return "";
 			//return starcraft.toString();
 		}
 		catch (IOException exception)

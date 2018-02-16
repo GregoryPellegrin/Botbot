@@ -4,6 +4,7 @@
  */
 package Game;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -13,20 +14,15 @@ import org.apache.http.util.EntityUtils;
 
 public class WoW
 {
-	/*
-	 * current_keystone_affixes(keystone_affix(name))
-	 * http://fr.wowhead.com/affixes
-	 */
 	public String getKeystoneInfo ()
 	{
 		try
 		{
 			HttpClient httpClient = HttpClientBuilder.create().build();
 			HttpResponse httpResponse = httpClient.execute(new HttpGet("https://eu.api.battle.net/data/wow/mythic-challenge-mode/?namespace=dynamic-eu&locale=fr_FR&access_token=" + ApiKey.ApiKey.BLIZZARD_TOKEN));
-			//Json.Mythic mythic = new Gson ().fromJson(EntityUtils.toString(httpResponse.getEntity()), Json.Mythic.class);
+			Json.Mythic mythic = new Gson ().fromJson(EntityUtils.toString(httpResponse.getEntity()).replaceAll("null", "0"), Json.Mythic.class);
 
-			return EntityUtils.toString(httpResponse.getEntity());
-			//return mythic.toString();
+			return mythic.toString();
 		}
 		catch (IOException exception)
 		{

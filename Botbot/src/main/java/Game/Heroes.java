@@ -4,7 +4,6 @@
  */
 package Game;
 
-import Json.Test;
 import com.google.gson.Gson;
 import java.io.IOException;
 import org.apache.http.HttpResponse;
@@ -34,17 +33,8 @@ public class Heroes
 		{
 			HttpClient httpClient = HttpClientBuilder.create().build();
 			HttpResponse httpResponse = httpClient.execute(new HttpGet("https://api.hotslogs.com/Public/Players/" + idRegion + "/" + playerName + "_" + playerId));
-			String json = EntityUtils.toString(httpResponse.getEntity());
-			Json.Heroes heroes = new Gson ().fromJson(json, Json.Heroes.class);
-			Gson gson = new Gson ();
-			Test test = new Test ();
-			String userJson = "{'age':26,'email':'norman@futurestud.io','isDeveloper':true,'name':'Norman'}";  
-			test = gson.fromJson(userJson, Test.class);
+			Json.Heroes heroes = new Gson ().fromJson(EntityUtils.toString(httpResponse.getEntity()).replaceAll("null", "0"), Json.Heroes.class);
 			
-			System.out.println(test.age);
-			System.out.println(test.name);
-			System.out.println(json);
-
 			return heroes.toString();
 		}
 		catch (IOException exception)

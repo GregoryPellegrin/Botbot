@@ -5,7 +5,6 @@
 package Discord;
 
 import Game.Heroes;
-import Game.Starcraft;
 import Game.WoW;
 
 public class Command
@@ -47,21 +46,6 @@ public class Command
 				return "La requête doit être du format suivant 'botbot heroes joueur id région'";
 
 			return (new Heroes ().getPlayerInfo(args[4], args[2], args[3]));
-		}
-	}
-
-	public String onStarcraftPlayer (String message)
-	{
-		if (message.equals("botbot sc2"))
-			return (new Starcraft ().getPlayerInfo("us", "4647037", "SushiGreGs"));
-		else
-		{
-			String [] args = message.split(" ");
-
-			if (args.length != 5)
-				return "La requête doit être du format suivant 'botbot sc2 joueur id région'";
-
-			return (new Starcraft ().getPlayerInfo(args[4], args[3], args[2]));
 		}
 	}
 }

@@ -40,8 +40,6 @@ public class Listener implements EventListener
 					event.getTextChannel().sendMessage(command.onWoWPlayer(message)).complete();
 				else if (message.contains("botbot heroes"))
 					event.getTextChannel().sendMessage(command.onHeroesPlayer(message)).complete();
-				else if (message.contains("botbot sc2"))
-					event.getTextChannel().sendMessage(command.onStarcraftPlayer(message)).complete();
 			}
 	}
 }

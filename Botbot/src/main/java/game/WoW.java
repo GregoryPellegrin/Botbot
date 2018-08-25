@@ -2,8 +2,6 @@ package game;
 
 import com.google.gson.Gson;
 
-import key.ApiKey;
-
 import java.io.IOException;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

@@ -23,7 +23,7 @@ public class Discord extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws IOException {
 		try
-		{ int a = 1;
+		{
 			JDA jda = (JDA) new JDABuilder(AccountType.BOT).setToken(key.ApiKey.DISCORD_TOKEN).buildAsync();
 
 			jda.addEventListener(new Listener ());

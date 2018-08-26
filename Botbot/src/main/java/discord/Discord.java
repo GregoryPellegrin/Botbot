@@ -9,7 +9,6 @@ import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 
-@WebServlet (name = "Discord", urlPatterns = {""})
 public class Discord extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;

@@ -7,7 +7,9 @@ public class Command
 {
 	public String onHelp ()
 	{
-	return "Bientot je t'aiderais";
+		return "botbot wow week" + "\n" +
+			   "botbot wow joueur serveur région" + "\n" +
+			   "botbot heroes joueur id région";
 	}
 
 	public String onWoWWeek ()

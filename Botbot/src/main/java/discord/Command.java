@@ -3,6 +3,7 @@ package discord;
 import game.Heroes;
 import game.WoW;
 
+
 public class Command
 {
 	public String onHelp ()
@@ -12,7 +13,7 @@ public class Command
 
 	public String onWoWWeek ()
 	{
-		return (new WoW().getKeystoneInfo());
+		return (new WoW ().getKeystoneInfo());
 	}
 
 	public String onWoWPlayer (String message)

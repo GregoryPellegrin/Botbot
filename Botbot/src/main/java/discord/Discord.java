@@ -11,6 +11,7 @@ import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 
+
 @WebServlet(
     name = "Discord",
     urlPatterns = {"/botbot"}

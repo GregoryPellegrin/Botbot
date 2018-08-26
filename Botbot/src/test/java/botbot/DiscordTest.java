@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import discord.Discord;
 
-public class HelloAppEngineTest {
+public class DiscordTest {
 
   @Test
   public void test() throws IOException {

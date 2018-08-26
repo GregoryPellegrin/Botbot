@@ -2,7 +2,6 @@ package json;
 
 import java.util.List;
 
-
 public class Mythic
 {
 	private _links _links;

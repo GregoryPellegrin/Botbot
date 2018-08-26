@@ -3,7 +3,6 @@ package discord;
 import game.Heroes;
 import game.WoW;
 
-
 public class Command
 {
 	public String onHelp ()

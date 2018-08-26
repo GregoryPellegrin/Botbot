@@ -8,7 +8,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
-
 public class Heroes
 {
 	public String getPlayerInfo (String regionName, String playerName, String playerId)

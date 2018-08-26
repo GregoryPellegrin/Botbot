@@ -17,6 +17,7 @@ public class Discord extends HttpServlet
 	@Override
 	public void doGet (HttpServletRequest request, HttpServletResponse response) throws IOException
 	{
+		System.out.println("1");
 		try
 		{
 			JDA jda = (JDA) new JDABuilder(AccountType.BOT).setToken(key.ApiKey.DISCORD_TOKEN).buildAsync();

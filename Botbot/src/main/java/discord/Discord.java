@@ -9,26 +9,27 @@ import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 
+
 @WebServlet
 (
-    name = "Discord",
-    urlPatterns = {"/botbot"}
+	name = "Discord",
+	urlPatterns = {"/botbot"}
 )
 public class Discord extends HttpServlet
 {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
 	@Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
-	    try
-	    {
-	        JDA jda = (JDA) new JDABuilder(AccountType.BOT).setToken(key.ApiKey.DISCORD_TOKEN).buildAsync();
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		try
+		{
+			JDA jda = (JDA) new JDABuilder(AccountType.BOT).setToken(key.ApiKey.DISCORD_TOKEN).buildAsync();
 
-	        jda.addEventListener(new Listener ());
-	    }
-	    catch (Exception e)
-	    {
-	        System.out.println(e.getMessage());
-	    }
+			jda.addEventListener(new Listener ());
+		}
+		catch (Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
 	}
 }

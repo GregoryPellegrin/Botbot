@@ -2,6 +2,7 @@ package json;
 
 import java.util.List;
 
+
 public class WoW
 {
 	private Double lastModified;

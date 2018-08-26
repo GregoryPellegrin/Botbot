@@ -3,11 +3,12 @@ package discord;
 import game.Heroes;
 import game.WoW;
 
+
 public class Command
 {
 	public String onHelp ()
 	{
-		return "Bientot je t'aiderais";
+	return "Bientot je t'aiderais";
 	}
 
 	public String onWoWWeek ()

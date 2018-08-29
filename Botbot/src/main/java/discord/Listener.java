@@ -1,6 +1,8 @@
 package discord;
 
 import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.Event;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.EventListener;
@@ -26,16 +28,18 @@ public class Listener implements EventListener
 		if (! event.getAuthor().equals(event.getJDA().getSelfUser()))
 			if (event.getGuild().getSelfMember().hasPermission(Permission.MESSAGE_WRITE))
 			{
-				String message = event.getMessage().getContentDisplay();
+				String messageIn = event.getMessage().getContentDisplay();
+				MessageChannel messageOut = event.getMessage().getChannel();
+				TextChannel messageOutOld = event.getTextChannel();
 				
-				if (message.equals("botbot help"))
-					event.getTextChannel().sendMessage(command.onHelp()).complete();
-				else if (message.equals("botbot wow week"))
-					event.getTextChannel().sendMessage(command.onWoWWeek()).complete();
-				else if (message.contains("botbot wow"))
-					event.getTextChannel().sendMessage(command.onWoWPlayer(message)).complete();
-				else if (message.contains("botbot heroes"))
-					event.getTextChannel().sendMessage(command.onHeroesPlayer(message)).complete();
+				if (messageIn.equals("botbot wow week"))
+					messageOutOld.sendMessage(command.onWoWWeek()).complete();
+				else if (messageIn.contains("botbot wow"))
+					messageOutOld.sendMessage(command.onWoWPlayer(messageIn)).complete();
+				else if (messageIn.contains("botbot heroes"))
+					messageOutOld.sendMessage(command.onHeroesPlayer(messageIn)).complete();
+				else if (messageIn.contains("botbot"))
+					messageOut.sendMessage(command.onHelp()).complete();
 			}
 	}
 }

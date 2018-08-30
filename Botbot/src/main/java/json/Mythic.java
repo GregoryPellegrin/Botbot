@@ -50,6 +50,7 @@ public class Mythic
 		String galvanisant = "Galvanisant - Quand un ennemi normal meurt, son cri d’agonie renforce ses alliés proches, ce qui augmente leur maximum de points de vie et leurs dégâts de 20%";
 		String grouillant  = "Grouillant - Des ennemis normaux supplémentaires sont présents dans tout le donjon";
 		String implacable  = "Implacable - Les ennemis normaux deviennent temporairement insensibles aux effets de perte de contrôle";
+		String infeste     = "Des ennemis normaux ont été infestés par un rejeton de G’huun";
 		String necrotique  = "Nécrotique - Les attaques de mêlée des ennemis appliquent un chancre cumulable qui inflige des dégâts sur la durée et réduit les soins reçus";
 		String sanguin     = "Sanguin - Quand un ennemi normal meurt, il laisse derrière lui une flaque d’ichor qui soigne ses alliés et inflige des dégâts aux personnages-joueurs";
 		String sismique    = "Sismique - Tous les personnages-joueurs émettent régulièrement une onde de choc qui inflige des dégâts aux alliés proches et les interrompt";
@@ -76,6 +77,8 @@ public class Mythic
 			return grouillant;
 		else if (affixe.equals("Implacable"))
 			return implacable;
+		else if (affixe.equals("Infesté"))
+			return infeste;
 		else if (affixe.equals("Nécrotique"))
 			return necrotique;
 		else if (affixe.equals("Sanguin"))
@@ -90,28 +93,39 @@ public class Mythic
 			return "Erreur pour obtenir la description, les affixes ont changés";
 	}
 	
-	@Override
-	public String toString ()
+	public String getAffixe1 ()
 	{
 		if (this.current_keystone_affixes.size() != 3)
 			return "Erreur pour obtenir les statistiques, le Json a changé";
-		
-		String affixe4 = "";
-		String affixe7 = "";
-		String affixe10 = "";
-		
+
 		for (int i = 0; i < this.current_keystone_affixes.size(); i++)
-		{
 			if (this.current_keystone_affixes.get(i).starting_level == 4)
-				affixe4 = getCurrentKeyStone(this.current_keystone_affixes.get(i).keystone_affix.name);
-			else if (this.current_keystone_affixes.get(i).starting_level == 7)
-				affixe7 = getCurrentKeyStone(this.current_keystone_affixes.get(i).keystone_affix.name);
-			else if (this.current_keystone_affixes.get(i).starting_level == 10)
-				affixe10 = getCurrentKeyStone(this.current_keystone_affixes.get(i).keystone_affix.name);
-		}
-		
-		return affixe4 + "\n" +
-			   affixe7 + "\n" +
-			   affixe10;
+				return getCurrentKeyStone(this.current_keystone_affixes.get(i).keystone_affix.name);
+
+		return "Erreur pour obtenir les statistiques, le Json a changé";
+	}
+	
+	public String getAffixe2 ()
+	{
+		if (this.current_keystone_affixes.size() != 3)
+			return "Erreur pour obtenir les statistiques, le Json a changé";
+
+		for (int i = 0; i < this.current_keystone_affixes.size(); i++)
+			if (this.current_keystone_affixes.get(i).starting_level == 7)
+				return getCurrentKeyStone(this.current_keystone_affixes.get(i).keystone_affix.name);
+
+		return "Erreur pour obtenir les statistiques, le Json a changé";
+	}
+	
+	public String getAffixe3 ()
+	{
+		if (this.current_keystone_affixes.size() != 3)
+			return "Erreur pour obtenir les statistiques, le Json a changé";
+
+		for (int i = 0; i < this.current_keystone_affixes.size(); i++)
+			if (this.current_keystone_affixes.get(i).starting_level == 10)
+				return getCurrentKeyStone(this.current_keystone_affixes.get(i).keystone_affix.name);
+
+		return "Erreur pour obtenir les statistiques, le Json a changé";
 	}
 }

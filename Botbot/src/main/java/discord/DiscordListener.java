@@ -7,13 +7,13 @@ import net.dv8tion.jda.core.events.Event;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.EventListener;
 
-public class Listener implements EventListener
+public class DiscordListener implements EventListener
 {
-	Command command;
+	DiscordCommand command;
 	
-	public Listener ()
+	public DiscordListener ()
 	{
-		this.command = new Command ();
+		this.command = new DiscordCommand ();
 	}
 
 	@Override
@@ -33,11 +33,11 @@ public class Listener implements EventListener
 				TextChannel messageOutOld = event.getTextChannel();
 				
 				if (messageIn.equals("botbot wow week"))
-					messageOutOld.sendMessage(command.onWoWWeek()).complete();
+					messageOut.sendMessage(command.onWoWWeek()).complete();
 				else if (messageIn.contains("botbot wow"))
 					messageOutOld.sendMessage(command.onWoWPlayer(messageIn)).complete();
 				else if (messageIn.contains("botbot heroes"))
-					messageOutOld.sendMessage(command.onHeroesPlayer(messageIn)).complete();
+					messageOut.sendMessage(command.onHeroesPlayer(messageIn)).complete();
 				else if (messageIn.contains("botbot"))
 					messageOut.sendMessage(command.onHelp()).complete();
 			}

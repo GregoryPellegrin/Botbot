@@ -10,32 +10,39 @@ import org.apache.http.util.EntityUtils;
 
 public class Heroes
 {
-	public String getPlayerInfo (String regionName, String playerName, String playerId)
+	private json.Heroes heroes;
+	
+	public Heroes (String playerName, String playerId, int regionId)
 	{
-		int idRegion;
-
-		if (regionName.equals("us"))
-			idRegion = 1;
-		else if (regionName.equals("eu"))
-			idRegion = 2;
-		else if (regionName.equals("kr"))
-			idRegion = 3;
-		else if (regionName.equals("cn"))
-			idRegion = 5;
-		else
-			return "Les régions possibles sont us (Amérique), eu (Europe), kr (Corée), cn (Chine)";
-
 		try
 		{
 			HttpClient httpClient = HttpClientBuilder.create().build();
-			HttpResponse httpResponse = httpClient.execute(new HttpGet("https://api.hotslogs.com/Public/Players/" + idRegion + "/" + playerName + "_" + playerId));
-			json.Heroes heroes = new Gson ().fromJson(EntityUtils.toString(httpResponse.getEntity()).replaceAll("null", "0"), json.Heroes.class);
-			
-			return heroes.toString();
+			HttpResponse httpResponse = httpClient.execute(new HttpGet("https://api.hotslogs.com/Public/Players/" + regionId + "/" + playerName + "_" + playerId));
+			this.heroes = new Gson ().fromJson(EntityUtils.toString(httpResponse.getEntity()).replaceAll("null", "0"), json.Heroes.class);
 		}
 		catch (IOException exception)
 		{
-			return exception.getMessage();
+			System.out.println(exception.getMessage());
 		}
+	}
+	
+	public String getQuickMatchMMR ()
+	{
+		return this.heroes.getQuickMatchMMR();
+	}
+	
+	public String getHeroLeagueMMR ()
+	{
+		return this.heroes.getHeroLeagueMMR();
+	}
+	
+	public String getTeamLeagueMMR ()
+	{
+		return this.heroes.getTeamLeagueMMR();
+	}
+	
+	public String getUnrankedDraftMMR ()
+	{
+		return this.heroes.getUnrankedDraftMMR();
 	}
 }

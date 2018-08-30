@@ -1,7 +1,6 @@
 package discord;
 
 import java.io.IOException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +19,7 @@ public class Discord extends HttpServlet
 		{
 			JDA jda = (JDA) new JDABuilder(AccountType.BOT).setToken(key.ApiKey.DISCORD_TOKEN).buildAsync();
 
-			jda.addEventListener(new Listener());
+			jda.addEventListener(new DiscordListener());
 		}
 		catch (Exception e)
 		{

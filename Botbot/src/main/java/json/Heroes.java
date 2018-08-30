@@ -16,38 +16,51 @@ public class Heroes
 		private int CurrentMMR;
 	}
 	
-	private String getInfo (LeaderboardRanking leaderboardRankings)
-	{
-		return leaderboardRankings.GameMode + " - MMR : " + leaderboardRankings.CurrentMMR + " - Ligue : " + leaderboardRankings.LeagueID + " - Rang : " + leaderboardRankings.LeagueRank;
-	}
-	
-	@Override
-	public String toString ()
+	public String getQuickMatchMMR ()
 	{
 		if (this.LeaderboardRankings.size() != 4)
 			return "Erreur pour obtenir les statistiques, le Json a changé";
 		
-		String quickMatch = "";
-		String heroLeague = "";
-		String teamLeague = "";
-		String unrankedDraft = "";
+		for (int i = 0; i < this.LeaderboardRankings.size(); i++)
+			if (this.LeaderboardRankings.get(i).GameMode.equals("QuickMatch"))
+				return String.valueOf(this.LeaderboardRankings.get(i).CurrentMMR);
+				
+		return "Erreur pour obtenir les statistiques, le Json a changé";
+	}
+	
+	public String getHeroLeagueMMR ()
+	{
+		if (this.LeaderboardRankings.size() != 4)
+			return "Erreur pour obtenir les statistiques, le Json a changé";
 		
 		for (int i = 0; i < this.LeaderboardRankings.size(); i++)
-		{
-			if (this.LeaderboardRankings.get(i).GameMode.equals("QuickMatch"))
-				quickMatch = getInfo(this.LeaderboardRankings.get(i));
-			else if (this.LeaderboardRankings.get(i).GameMode.equals("HeroLeague"))
-				heroLeague = getInfo(this.LeaderboardRankings.get(i));
-			else if (this.LeaderboardRankings.get(i).GameMode.equals("TeamLeague"))
-				teamLeague = getInfo(this.LeaderboardRankings.get(i));
-			else if (this.LeaderboardRankings.get(i).GameMode.equals("UnrankedDraft"))
-				unrankedDraft = getInfo(this.LeaderboardRankings.get(i));
-		}
+			if (this.LeaderboardRankings.get(i).GameMode.equals("HeroLeague"))
+				return String.valueOf(this.LeaderboardRankings.get(i).CurrentMMR);
+				
+		return "Erreur pour obtenir les statistiques, le Json a changé";
+	}
+	
+	public String getTeamLeagueMMR ()
+	{
+		if (this.LeaderboardRankings.size() != 4)
+			return "Erreur pour obtenir les statistiques, le Json a changé";
 		
-		return "Nom : " + this.Name + "\n" +
-			   quickMatch + "\n" +
-			   heroLeague + "\n" +
-			   teamLeague + "\n" +
-			   unrankedDraft;
+		for (int i = 0; i < this.LeaderboardRankings.size(); i++)
+			if (this.LeaderboardRankings.get(i).GameMode.equals("TeamLeague"))
+				return String.valueOf(this.LeaderboardRankings.get(i).CurrentMMR);
+				
+		return "Erreur pour obtenir les statistiques, le Json a changé";
+	}
+	
+	public String getUnrankedDraftMMR ()
+	{
+		if (this.LeaderboardRankings.size() != 4)
+			return "Erreur pour obtenir les statistiques, le Json a changé";
+		
+		for (int i = 0; i < this.LeaderboardRankings.size(); i++)
+			if (this.LeaderboardRankings.get(i).GameMode.equals("UnrankedDraft"))
+				return String.valueOf(this.LeaderboardRankings.get(i).CurrentMMR);
+				
+		return "Erreur pour obtenir les statistiques, le Json a changé";
 	}
 }

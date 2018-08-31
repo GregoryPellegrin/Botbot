@@ -13,9 +13,7 @@ public class DiscordCommand
 
 	public Message onWoWWeek ()
 	{
-		Mythic mythic = new Mythic ();
-		
-		return new DiscordMessage ().getWoWMythic(mythic);
+		return new DiscordMessage ().getWoWMythic(new Mythic ());
 	}
 
 	public Message onWoWPlayer (String message)
@@ -38,11 +36,7 @@ public class DiscordCommand
 	public Message onHeroesPlayer (String message)
 	{
 		if (message.equals("botbot heroes"))
-		{
-			Heroes heroes = new Heroes ("UnicornMastr", "11956", 1);
-			
-			return new DiscordMessage ().getHeroes(heroes, "UnicornMastr");
-		}
+			return new DiscordMessage ().getHeroes(new Heroes ("UnicornMastr", "11956", 1), "UnicornMastr");
 		else
 		{
 			String [] args = message.split(" ");
@@ -63,9 +57,7 @@ public class DiscordCommand
 			else
 				return new DiscordMessage ().getHelp("Commande incorrecte");
 
-			Heroes heroes = new Heroes (args[2], args[3], regionId);
-			
-			return new DiscordMessage ().getHeroes(heroes, args[2]);
+			return new DiscordMessage ().getHeroes(new Heroes (args[2], args[3], regionId), args[2]);
 		}
 	}
 }

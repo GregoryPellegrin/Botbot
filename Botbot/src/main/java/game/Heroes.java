@@ -28,21 +28,21 @@ public class Heroes
 	
 	public String getQuickMatchMMR ()
 	{
-		return this.heroes.getQuickMatchMMR();
+		return this.heroes.getMMR("QuickMatch");
 	}
 	
 	public String getHeroLeagueMMR ()
 	{
-		return this.heroes.getHeroLeagueMMR();
+		return this.heroes.getMMR("HeroLeague");
 	}
 	
 	public String getTeamLeagueMMR ()
 	{
-		return this.heroes.getTeamLeagueMMR();
+		return this.heroes.getMMR("TeamLeague");
 	}
 	
 	public String getUnrankedDraftMMR ()
 	{
-		return this.heroes.getUnrankedDraftMMR();
+		return this.heroes.getMMR("UnrankedDraft");
 	}
 }

@@ -16,10 +16,179 @@ public class WoW
     private String thumbnail;
     private String calcClass;
     private int faction;
+	private Item item;
 	private Statistics statistics;
 	private Mounts mounts;
 	private Pvp pvp;
 	private Double totalHonorableKills;
+	
+	private class Item
+	{
+		private int averageItemLevel;
+		private int averageItemLevelEquipped;
+		private ItemInformations head;
+		private ItemInformations neck;
+		private ItemInformations shoulder;
+		private ItemInformations back;
+		private ItemInformations chest;
+		private ItemInformations wrist;
+		private ItemInformations waist;
+		private ItemInformations legs;
+		private ItemInformations feet;
+		private ItemInformations finger1;
+		private ItemInformations finger2;
+		private ItemInformations trinket1;
+		private ItemInformations trinket2;
+		private ItemWeaponInformations mainHand;
+		
+		private class ItemInformations
+		{
+			private Double id;
+			private String name;
+			private String icon;
+			private int quality;
+			private int itemLevel;
+			private TooltipParams tooltipParams;
+			private List <Stats> stats;
+			private int armor;
+			private String context;
+			private List <Integer> bonusLists;
+			private int artifactId;
+			private Double displayInfoId;
+			private int artifactAppearanceId;
+			private List <Integer> artifactTraits;
+			private List <Integer> relics;
+			private TooltipParams appearance;
+			private TooltipParams azeriteItem;
+			private TooltipParams azeriteEmpoweredItem;
+			
+			private class TooltipParams
+			{
+				private Double transmogItem;
+				private int timewalkerLevel;
+				private int azeritePower0;
+				private int azeritePower1;
+				private int azeritePower2;
+				private int azeritePower3;
+				private int azeritePowerLevel;
+			}
+			
+			private class Stats
+			{
+				private int stat;
+				private int amount;
+			}
+			
+			private class Appearance
+			{
+				private Double itemId;
+				private int itemAppearanceModId;
+				private int transmogItemAppearanceModId;
+			}
+			
+			private class AzeriteItem
+			{
+				private int azeriteLevel;
+				private Double azeriteExperience;
+				private Double azeriteExperienceRemaining;
+			}
+			
+			private class AzeriteEmpoweredItem
+			{
+				private List <AzeritePowers> azeritePowers;
+				
+				private class AzeritePowers
+				{
+					private int id;
+					private int tier;
+					private Double spellId;
+					private int bonusListId;
+				}
+			}
+		}
+		
+		private class ItemWeaponInformations
+		{
+			private Double id;
+			private String name;
+			private String icon;
+			private int quality;
+			private int itemLevel;
+			private TooltipParams tooltipParams;
+			private List <Stats> stats;
+			private int armor;
+			private WeaponInfo weaponInfo;
+			private String context;
+			private List <Integer> bonusLists;
+			private Double displayInfoId;
+			private int artifactId;
+			private int artifactAppearanceId;
+			private List <Integer> artifactTraits;
+			private List <Integer> relics;
+			private TooltipParams appearance;
+			private TooltipParams azeriteItem;
+			private TooltipParams azeriteEmpoweredItem;
+			
+			private class TooltipParams
+			{
+				private Double transmogItem;
+				private int timewalkerLevel;
+				private int azeritePower0;
+				private int azeritePower1;
+				private int azeritePower2;
+				private int azeritePower3;
+				private int azeritePowerLevel;
+			}
+			
+			private class Stats
+			{
+				private int stat;
+				private int amount;
+			}
+			
+			private class WeaponInfo
+			{
+				private Damage damage;
+				private Double weaponSpeed;
+				private Double dps;
+				
+				private class Damage
+				{
+					private int min;
+					private int max;
+					private Double exactMin;
+					private Double exactMax;
+				}
+			}
+			
+			private class Appearance
+			{
+				private Double itemId;
+				private int itemAppearanceModId;
+				private int transmogItemAppearanceModId;
+			}
+			
+			private class AzeriteItem
+			{
+				private int azeriteLevel;
+				private Double azeriteExperience;
+				private Double azeriteExperienceRemaining;
+			}
+			
+			private class AzeriteEmpoweredItem
+			{
+				private List <AzeritePowers> azeritePowers;
+				
+				private class AzeritePowers
+				{
+					private int id;
+					private int tier;
+					private Double spellId;
+					private int bonusListId;
+				}
+			}
+		}
+	}
 	
 	private class Statistics
 	{
@@ -99,7 +268,37 @@ public class WoW
 		}
 	}
 	
-	private String getReputation ()
+	public int getLevel ()
+	{
+		return this.level;
+	}
+	
+	public int getAverageItemLevel ()
+	{
+		return this.item.averageItemLevel;
+	}
+	
+	public String getRealm ()
+	{
+		return this.realm;
+	}
+	
+	public int getItemLevel ()
+	{
+		return this.level;
+	}
+	
+	public int getAchievementPoints ()
+	{
+		return this.achievementPoints;
+	}
+	
+	public String getMounts ()
+	{
+		return this.mounts.numCollected + " / " + this.mounts.numNotCollected;
+	}
+	
+	public String getReputation ()
 	{
 		for (int i = 0; i < this.statistics.subCategories.get(0).subCategories.size(); i++)
 			if (this.statistics.subCategories.get(0).subCategories.get(i).id == 147)
@@ -110,7 +309,27 @@ public class WoW
 		return "Erreur pour obtenir les réputations, le json a changé";
 	}
 	
-	private String getDeath ()
+	public String getRBG ()
+	{
+		return this.pvp.brackets.ARENA_BRACKET_RBG.rating + " - " + this.pvp.brackets.ARENA_BRACKET_RBG.seasonWon + " / " + this.pvp.brackets.ARENA_BRACKET_RBG.seasonPlayed;
+	}
+	
+	public String get2v2 ()
+	{
+		return this.pvp.brackets.ARENA_BRACKET_2v2.rating + " - " + this.pvp.brackets.ARENA_BRACKET_2v2.seasonWon + " / " + this.pvp.brackets.ARENA_BRACKET_2v2.seasonPlayed;
+	}
+	
+	public String get3v3 ()
+	{
+		return this.pvp.brackets.ARENA_BRACKET_3v3.rating + " - " + this.pvp.brackets.ARENA_BRACKET_3v3.seasonWon + " / " + this.pvp.brackets.ARENA_BRACKET_3v3.seasonPlayed;
+	}
+	
+	public int getHonorableKills ()
+	{
+		return this.totalHonorableKills.intValue();
+	}
+	
+	public String getDeath ()
 	{
 		for (int i = 0; i < this.statistics.subCategories.size(); i++)
 			if (this.statistics.subCategories.get(i).id == 122)
@@ -122,21 +341,5 @@ public class WoW
 	public String getAvatar ()
 	{
 		return ".worldofwarcraft.com/character/" + this.thumbnail;
-	}
-	
-	@Override
-	public String toString ()
-	{
-		return "Nom : " + this.name + "\n" +
-			   "Royaume : " + this.realm + "\n" +
-			   "Niveau : " + this.level + "\n" +
-			   "Hauts faits : " + this.achievementPoints + "\n" +
-			   "Victoires honorables : " + this.totalHonorableKills.intValue() + "\n" +
-			   "Montures : " + this.mounts.numCollected + " / " + this.mounts.numNotCollected + "\n" +
-			   "Réputations exaltées : " + this.getReputation() + "\n" +
-			   "Nombre de morts : " + this.getDeath() + "\n" +
-			   "RBG - Classement : " + this.pvp.brackets.ARENA_BRACKET_RBG.rating + " - Victoires : " + this.pvp.brackets.ARENA_BRACKET_RBG.seasonWon + " - Total : " + this.pvp.brackets.ARENA_BRACKET_RBG.seasonPlayed + "\n" +
-			   "2v2 - Classement : " + this.pvp.brackets.ARENA_BRACKET_2v2.rating + " - Victoires : " + this.pvp.brackets.ARENA_BRACKET_2v2.seasonWon + " - Total : " + this.pvp.brackets.ARENA_BRACKET_2v2.seasonPlayed + "\n" +
-			   "3v3 - Classement : " + this.pvp.brackets.ARENA_BRACKET_3v3.rating + " - Victoires : " + this.pvp.brackets.ARENA_BRACKET_3v3.seasonWon + " - Total : " + this.pvp.brackets.ARENA_BRACKET_3v3.seasonPlayed + "\n";
 	}
 }

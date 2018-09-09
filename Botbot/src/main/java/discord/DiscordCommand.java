@@ -2,6 +2,7 @@ package discord;
 
 import game.Heroes;
 import game.Mythic;
+import game.WoW;
 import net.dv8tion.jda.core.entities.Message;
 
 public class DiscordCommand
@@ -18,8 +19,8 @@ public class DiscordCommand
 
 	public Message onWoWPlayer (String message)
 	{
-		/*if (message.equals("botbot wow"))
-			return (new WoW ().getPlayerInfo("eu", "outland", "Eliaesteya"));
+		if (message.equals("botbot wow"))
+			return new DiscordMessage ().getWoW(new WoW ("eu", "outland", "Eliaesteya"), "Eliaesteya");
 		else
 		{
 			String [] args = message.split(" ");
@@ -27,10 +28,8 @@ public class DiscordCommand
 			if (args.length != 5)
 				return new DiscordMessage ().getHelp("Commande incorrecte");
 
-			return (new WoW ().getPlayerInfo(args[4], args[3], args[2]));
-		}*/
-
-		return new DiscordMessage ().getHelp("Commande incorrecte");
+			return new DiscordMessage ().getWoW(new WoW (args[4], args[3], args[2]), args[2]);
+		}
 	}
 
 	public Message onHeroesPlayer (String message)

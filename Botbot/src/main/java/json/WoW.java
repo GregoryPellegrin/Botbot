@@ -26,22 +26,23 @@ public class WoW
 	{
 		private int averageItemLevel;
 		private int averageItemLevelEquipped;
-		private ItemInformations head;
-		private ItemInformations neck;
-		private ItemInformations shoulder;
-		private ItemInformations back;
-		private ItemInformations chest;
-		private ItemInformations wrist;
-		private ItemInformations waist;
-		private ItemInformations legs;
-		private ItemInformations feet;
-		private ItemInformations finger1;
-		private ItemInformations finger2;
-		private ItemInformations trinket1;
-		private ItemInformations trinket2;
-		private ItemWeaponInformations mainHand;
+		private ItemEquiped head;
+		private ItemEquiped neck;
+		private ItemEquiped shoulder;
+		private ItemEquiped back;
+		private ItemEquiped chest;
+		private ItemEquiped wrist;
+		private ItemEquiped hands;
+		private ItemEquiped waist;
+		private ItemEquiped legs;
+		private ItemEquiped feet;
+		private ItemEquipedFinger finger1;
+		private ItemEquipedFinger finger2;
+		private ItemEquiped trinket1;
+		private ItemEquiped trinket2;
+		private ItemEquipedWeapon mainHand;
 		
-		private class ItemInformations
+		private class ItemEquiped
 		{
 			private Double id;
 			private String name;
@@ -107,7 +108,71 @@ public class WoW
 			}
 		}
 		
-		private class ItemWeaponInformations
+		private class ItemEquipedFinger
+		{
+			private Double id;
+			private String name;
+			private String icon;
+			private int quality;
+			private int itemLevel;
+			private TooltipParams tooltipParams;
+			private List <Stats> stats;
+			private int armor;
+			private String context;
+			private List <Integer> bonusLists;
+			private int artifactId;
+			private Double displayInfoId;
+			private int artifactAppearanceId;
+			private List <Integer> artifactTraits;
+			private List <Integer> relics;
+			private TooltipParams appearance;
+			private TooltipParams azeriteItem;
+			private TooltipParams azeriteEmpoweredItem;
+			
+			private class TooltipParams
+			{
+				private Double transmogItem;
+				private int timewalkerLevel;
+				private int azeritePower0;
+				private int azeritePower1;
+				private int azeritePower2;
+				private int azeritePower3;
+				private int azeritePowerLevel;
+			}
+			
+			private class Stats
+			{
+				private int stat;
+				private int amount;
+			}
+			
+			private class Appearance
+			{
+				private Double enchantDisplayInfoId;
+			}
+			
+			private class AzeriteItem
+			{
+				private int azeriteLevel;
+				private Double azeriteExperience;
+				private Double azeriteExperienceRemaining;
+			}
+			
+			private class AzeriteEmpoweredItem
+			{
+				private List <AzeritePowers> azeritePowers;
+				
+				private class AzeritePowers
+				{
+					private int id;
+					private int tier;
+					private Double spellId;
+					private int bonusListId;
+				}
+			}
+		}
+		
+		private class ItemEquipedWeapon
 		{
 			private Double id;
 			private String name;
@@ -275,7 +340,8 @@ public class WoW
 	
 	public int getAverageItemLevel ()
 	{
-		return this.item.averageItemLevel;
+		return 0;
+		//return this.item.averageItemLevel;
 	}
 	
 	public String getRealm ()

@@ -18,6 +18,7 @@ public class WoW
 		{
 			HttpClient httpClient = HttpClientBuilder.create().build();
 			HttpResponse httpResponse = httpClient.execute(new HttpGet("https://" + regionName + ".api.battle.net/wow/character/" + serverName + "/" + playerName + "?fields=statistics%2Cpvp%2Cmounts%2Citems&locale=fr_FR&apikey=" + key.ApiKey.BLIZZARD_API_KEY));
+			
 			this.wow = new Gson ().fromJson(EntityUtils.toString(httpResponse.getEntity()).replaceAll("null", "0"), json.WoW.class);
 		}
 		catch (IOException exception)

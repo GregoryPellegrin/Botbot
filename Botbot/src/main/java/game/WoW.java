@@ -17,7 +17,7 @@ public class WoW
 		try
 		{
 			HttpClient httpClient = HttpClientBuilder.create().build();
-			HttpResponse httpResponse = httpClient.execute(new HttpGet("https://" + regionName + ".api.battle.net/wow/character/" + serverName + "/" + playerName + "?fields=statistics%2Cpvp%2Cmounts%2Citems&locale=fr_FR&apikey=" + key.ApiKey.BLIZZARD_API_KEY));
+			HttpResponse httpResponse = httpClient.execute(new HttpGet("https://" + regionName + ".api.battle.net/wow/character/" + serverName + "/" + playerName + "?fields=statistics%2Cpvp%2Cmounts%2Citems%2Creputation&locale=fr_FR&apikey=" + key.ApiKey.BLIZZARD_API_KEY));
 			
 			this.wow = new Gson ().fromJson(EntityUtils.toString(httpResponse.getEntity()).replaceAll("null", "0"), json.WoW.class);
 		}
@@ -60,7 +60,7 @@ public class WoW
 	
 	public String getAchievementPoints ()
 	{
-		return String.valueOf(this.wow.getAchievementPoints());
+		return this.wow.getAchievementPoints();
 	}
 	
 	public String getMounts ()
@@ -86,15 +86,5 @@ public class WoW
 	public String get3v3 ()
 	{
 		return this.wow.get3v3();
-	}
-	
-	public String getHonorableKills ()
-	{
-		return String.valueOf(this.wow.getHonorableKills());
-	}
-	
-	public String getDeath ()
-	{
-		return this.wow.getDeath();
 	}
 }

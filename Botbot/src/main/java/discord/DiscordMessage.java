@@ -102,12 +102,6 @@ public class DiscordMessage
 		.addField("3v3",
 		  		  wow.get3v3(),
 		  		  false)
-		.addField("Victoires honorables",
-		  		  wow.getHonorableKills(),
-		  		  false)
-		.addField("Morts",
-		  		  wow.getDeath(),
-		  		  false)
 		.build());
 		
 		return messageBuilder.build();

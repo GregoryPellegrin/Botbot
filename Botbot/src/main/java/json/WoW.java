@@ -16,13 +16,14 @@ public class WoW
     private String thumbnail;
     private String calcClass;
     private int faction;
-	private Item item;
+	private Items items;
+    private List <Reputation> reputation;
 	private Statistics statistics;
 	private Mounts mounts;
 	private Pvp pvp;
 	private Double totalHonorableKills;
 	
-	private class Item
+	private class Items
 	{
 		private int averageItemLevel;
 		private int averageItemLevelEquipped;
@@ -255,6 +256,15 @@ public class WoW
 		}
 	}
 	
+	private class Reputation
+	{
+		private Double id;
+		private String name;
+		private int standing;
+		private Double value;
+		private Double max;
+	}
+	
 	private class Statistics
 	{
 		private int id;
@@ -340,8 +350,7 @@ public class WoW
 	
 	public int getAverageItemLevel ()
 	{
-		return 1;
-		//return this.item.averageItemLevel;
+		return this.items.averageItemLevel;
 	}
 	
 	public String getRealm ()
@@ -354,25 +363,26 @@ public class WoW
 		return this.level;
 	}
 	
-	public int getAchievementPoints ()
+	public String getAchievementPoints ()
 	{
-		return this.achievementPoints;
+		return this.achievementPoints + " / 30735";
 	}
 	
 	public String getMounts ()
 	{
-		return this.mounts.numCollected + " / " + this.mounts.numNotCollected;
+		return this.mounts.numCollected + " / " + (this.mounts.numCollected + this.mounts.numNotCollected);
 	}
 	
 	public String getReputation ()
 	{
-		for (int i = 0; i < this.statistics.subCategories.get(0).subCategories.size(); i++)
-			if (this.statistics.subCategories.get(0).subCategories.get(i).id == 147)
-				for (int j = 0; j < this.statistics.subCategories.get(0).subCategories.get(i).statistics.size(); j++)
-					if (this.statistics.subCategories.get(0).subCategories.get(i).statistics.get(j).id == 377)
-						return String.valueOf(this.statistics.subCategories.get(0).subCategories.get(i).statistics.get(j).quantity.intValue());
+		int exaltedReputations = 0;
+		int totalReputations = this.reputation.size();
 		
-		return "Erreur pour obtenir les réputations, le json a changé";
+		for (int i = 0; i < this.reputation.size(); i++)
+			if (this.reputation.get(i).standing == 7)
+				exaltedReputations = exaltedReputations + 1;
+			
+		return exaltedReputations + " / " + totalReputations;
 	}
 	
 	public String getRBG ()

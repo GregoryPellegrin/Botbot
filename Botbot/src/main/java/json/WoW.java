@@ -340,7 +340,7 @@ public class WoW
 	
 	public int getAverageItemLevel ()
 	{
-		return 0;
+		return 1;
 		//return this.item.averageItemLevel;
 	}
 	

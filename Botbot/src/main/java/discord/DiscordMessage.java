@@ -17,28 +17,73 @@ public class DiscordMessage
 
 	public Message getHelp (String helpTitle)
 	{
-		MessageBuilder messageBuilder = new MessageBuilder().append("").setEmbed(new EmbedBuilder().setColor(Color.WHITE).setAuthor(helpTitle, null, LOGO_HELP).setTitle("Voici les commandes disponibles").addField("Obtenir les affixes des donjons mythiques + de la semaine", "botbot wow week", false).addField("Obtenir les informations d'un personnage World of Warcraft", "botbot wow joueur serveur région", false).addField("Obtenir les informations d'un joueur Heroes of the Storm", "botbot heroes joueur id région", false).build());
+		//@formatter:off
+		MessageBuilder messageBuilder = new MessageBuilder().append("").setEmbed(new EmbedBuilder()
+			.setColor(Color.WHITE)
+			.setAuthor(helpTitle, null, LOGO_HELP)
+			.setTitle("Voici les commandes disponibles")
+			.addField("Obtenir les affixes des donjons mythiques + de la semaine",
+					  "botbot wow week",
+					  false)
+			.addField("Obtenir les informations d'un personnage World of Warcraft",
+					  "botbot wow joueur serveur région\n"
+					+ "serveur : outland, archimonde, etc...\n"
+					+ "région  : eu, us",
+					  false)
+			.addField("Obtenir les informations d'un joueur Heroes of the Storm",
+					  "botbot heroes joueur id région\n"
+				    + "id : le numéro à côté du battletag"
+					+ "région : eu, us",
+					  false)
+			.build());
+		//@formatter:on
 
 		return messageBuilder.build();
 	}
 
 	public Message getHeroes (Heroes heroes, String player)
 	{
-		MessageBuilder messageBuilder = new MessageBuilder().append("").setEmbed(new EmbedBuilder().setColor(Color.BLUE).setAuthor("Heroes of the Storm - Informations du joueur", null, LOGO_HEROES).setTitle(player).addField("Partie Rapide", heroes.getQuickMatchMMR(), false).addField("Ligue Héroïque", heroes.getHeroLeagueMMR(), false).addField("Ligue Héroïque par équipe", heroes.getTeamLeagueMMR(), false).addField("Partie Non Classé", heroes.getUnrankedDraftMMR(), false).build());
+		//@formatter:off
+		MessageBuilder messageBuilder = new MessageBuilder().append("").setEmbed(new EmbedBuilder()
+			.setColor(Color.BLUE)
+			.setAuthor("Heroes of the Storm - Informations du joueur", null, LOGO_HEROES)
+			.setTitle(player).addField("Partie Rapide", heroes.getQuickMatchMMR(), false)
+			.addField("Ligue Héroïque", heroes.getHeroLeagueMMR(), false)
+			.addField("Ligue Héroïque par équipe", heroes.getTeamLeagueMMR(), false)
+			.addField("Partie Non Classé", heroes.getUnrankedDraftMMR(), false)
+			.build());
+		//@formatter:on
 
 		return messageBuilder.build();
 	}
 
 	public Message getWoWMythic (Mythic mythic)
 	{
-		MessageBuilder messageBuilder = new MessageBuilder().append("").setEmbed(new EmbedBuilder().setColor(Color.MAGENTA).setAuthor("World of Warcraft - Affixes Donjons Mythiques +", null, LOGO_WOW_MYTHIC).setTitle("Affixes de la semaine").addField(mythic.getAffixeTitre1(), mythic.getAffixeDescription1(), false).addField(mythic.getAffixeTitre2(), mythic.getAffixeDescription2(), false).addField(mythic.getAffixeTitre3(), mythic.getAffixeDescription3(), false).build());
+		//@formatter:off
+		MessageBuilder messageBuilder = new MessageBuilder().append("").setEmbed(new EmbedBuilder()
+			.setColor(Color.MAGENTA).setAuthor("World of Warcraft - Affixes Donjons Mythiques +", null, LOGO_WOW_MYTHIC)
+			.setTitle("Affixes de la semaine").addField(mythic.getAffixeTitre1(), mythic.getAffixeDescription1(), false)
+			.addField(mythic.getAffixeTitre2(), mythic.getAffixeDescription2(), false)
+			.addField(mythic.getAffixeTitre3(), mythic.getAffixeDescription3(), false)
+			.build());
+		//@formatter:on
 
 		return messageBuilder.build();
 	}
 
 	public Message getWoW (WoW wow, String character)
 	{
-		MessageBuilder messageBuilder = new MessageBuilder().append("").setEmbed(new EmbedBuilder().setColor(Color.ORANGE).setAuthor("World of Warcraft - Informations du personnage", null, LOGO_WOW).setTitle(character + " (" + wow.getAverageItemLevel() + " - " + wow.getLevel() + ")" + " - " + wow.getRealm()).addField("Hauts faits", wow.getAchievementPoints(), false).addField("Montures", wow.getMounts(), false).addField("Reputations", wow.getReputation(), false).addField("Champs de bataille", wow.getRBG(), false).addField("2v2", wow.get2v2(), false).addField("3v3", wow.get3v3(), false).build());
+		//@formatter:off
+		MessageBuilder messageBuilder = new MessageBuilder().append("").setEmbed(new EmbedBuilder()
+			.setColor(Color.ORANGE).setAuthor("World of Warcraft - Informations du personnage", null, LOGO_WOW)
+			.setTitle(character + " (" + wow.getAverageItemLevel() + " - " + wow.getLevel() + ")" + " - " + wow.getRealm())
+			.addField("Hauts faits", wow.getAchievementPoints(), false)
+			.addField("Montures", wow.getMounts(), false)
+			.addField("Reputations", wow.getReputation(), false)
+			.addField("Champs de bataille", wow.getRBG(), false)
+			.addField("2v2", wow.get2v2(), false).addField("3v3", wow.get3v3(), false)
+			.build());
+		//@formatter:on
 
 		return messageBuilder.build();
 	}

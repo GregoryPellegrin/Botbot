@@ -17,11 +17,10 @@ public class Discord extends HttpServlet
 	{
 		try
 		{
-			JDA jda = (JDA) new JDABuilder(AccountType.BOT).setToken(key.ApiKey.DISCORD_TOKEN).buildAsync();
+			JDA jda = new JDABuilder(AccountType.BOT).setToken(key.ApiKey.DISCORD_TOKEN).buildAsync();
 
 			jda.addEventListener(new DiscordListener());
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			System.out.println(e.getMessage());
 		}

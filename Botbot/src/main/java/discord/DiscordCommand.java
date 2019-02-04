@@ -9,40 +9,40 @@ public class DiscordCommand
 {
 	public Message onHelp ()
 	{
-		return new DiscordMessage ().getHelp("Help");
+		return new DiscordMessage().getHelp("Help");
 	}
 
 	public Message onWoWWeek ()
 	{
-		return new DiscordMessage ().getWoWMythic(new Mythic ());
+		return new DiscordMessage().getWoWMythic(new Mythic());
 	}
 
 	public Message onWoWPlayer (String message)
 	{
 		if (message.equals("botbot wow"))
-			return new DiscordMessage ().getWoW(new WoW ("eu", "outland", "Eliaesteya"), "Eliaesteya");
+			return new DiscordMessage().getWoW(new WoW("eu", "outland", "Eliaesteya"), "Eliaesteya");
 		else
 		{
 			String [] args = message.split(" ");
 
 			if (args.length != 5)
-				return new DiscordMessage ().getHelp("Commande incorrecte");
+				return new DiscordMessage().getHelp("Commande incorrecte");
 
-			return new DiscordMessage ().getWoW(new WoW (args[4], args[3], args[2]), args[2]);
+			return new DiscordMessage().getWoW(new WoW(args[4], args[3], args[2]), args[2]);
 		}
 	}
 
 	public Message onHeroesPlayer (String message)
 	{
 		if (message.equals("botbot heroes"))
-			return new DiscordMessage ().getHeroes(new Heroes ("UnicornMastr", "11956", 1), "UnicornMastr");
+			return new DiscordMessage().getHeroes(new Heroes("UnicornMastr", "11956", 1), "UnicornMastr");
 		else
 		{
 			String [] args = message.split(" ");
 
 			if (args.length != 5)
-				return new DiscordMessage ().getHelp("Commande incorrecte");
-			
+				return new DiscordMessage().getHelp("Commande incorrecte");
+
 			int regionId = 1;
 
 			if (args[4].equals("us"))
@@ -54,9 +54,9 @@ public class DiscordCommand
 			else if (args[4].equals("cn"))
 				regionId = 5;
 			else
-				return new DiscordMessage ().getHelp("Commande incorrecte");
+				return new DiscordMessage().getHelp("Commande incorrecte");
 
-			return new DiscordMessage ().getHeroes(new Heroes (args[2], args[3], regionId), args[2]);
+			return new DiscordMessage().getHeroes(new Heroes(args[2], args[3], regionId), args[2]);
 		}
 	}
 }

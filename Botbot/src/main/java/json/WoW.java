@@ -373,6 +373,11 @@ public class WoW
 		return this.achievementPoints + " / 30735";
 	}
 
+	public String getThumbnail ()
+	{
+		return this.thumbnail;
+	}
+
 	public String getMounts ()
 	{
 		return this.mounts.numCollected + " / " + (this.mounts.numCollected + this.mounts.numNotCollected);

@@ -42,7 +42,7 @@ public class DiscordCommand
 	public Message onWoWPlayer (String message)
 	{
 		if (message.equals("botbot wow"))
-			return new DiscordMessage().getWoW(new WoW("eu", "outland", "Eliaesteya"), "Eliaesteya");
+			return new DiscordMessage().getWoW(new WoW("eu", "outland", "Eliaesteya"), "eu");
 		else
 		{
 			String [] args = message.split(" ");
@@ -50,7 +50,7 @@ public class DiscordCommand
 			if (args.length != 5)
 				return new DiscordMessage().getHelp("Commande incorrecte");
 
-			return new DiscordMessage().getWoW(new WoW(args[4], args[3], args[2]), args[2]);
+			return new DiscordMessage().getWoW(new WoW(args[4], args[3], args[2]), args[4]);
 		}
 	}
 }

@@ -36,13 +36,13 @@ public class DiscordMessage
 		return messageBuilder.build();
 	}
 
-	public Message getHeroes (Heroes heroes, String player)
+	public Message getHeroes (Heroes heroes, String playerName)
 	{
 		//@formatter:off
 		MessageBuilder messageBuilder = new MessageBuilder().append("").setEmbed(new EmbedBuilder()
 			.setColor(Color.BLUE)
 			.setAuthor("Heroes of the Storm - Informations du joueur", null, LOGO_HEROES)
-			.setTitle(player).addField("Partie Rapide", heroes.getQuickMatchMMR(), false)
+			.setTitle(playerName).addField("Partie Rapide", heroes.getQuickMatchMMR(), false)
 			.addField("Ligue Héroïque", heroes.getHeroLeagueMMR(), false)
 			.addField("Ligue Héroïque par équipe", heroes.getTeamLeagueMMR(), false)
 			.addField("Partie Non Classé", heroes.getUnrankedDraftMMR(), false)
@@ -52,11 +52,12 @@ public class DiscordMessage
 		return messageBuilder.build();
 	}
 
-	public Message getWoW (WoW wow, String character)
+	public Message getWoW (WoW wow, String regionName)
 	{
 		//@formatter:off
 		MessageBuilder messageBuilder = new MessageBuilder().append("").setEmbed(new EmbedBuilder()
-			.setColor(Color.ORANGE).setAuthor("World of Warcraft - Informations du personnage", null, LOGO_WOW)
+			.setColor(Color.ORANGE)
+			.setAuthor("World of Warcraft - Informations du personnage", null, wow.getThumbnail(regionName))
 			.setTitle(wow.getName() + " (" + wow.getAverageItemLevel() + " - " + wow.getLevel() + ")" + " - " + wow.getRealm())
 			.addField("Hauts faits", wow.getAchievementPoints(), false)
 			.addField("Montures", wow.getMounts(), false)

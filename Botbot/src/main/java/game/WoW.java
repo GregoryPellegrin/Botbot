@@ -10,6 +10,9 @@ import com.google.gson.Gson;
 
 public class WoW
 {
+	private final static String LOGO_CHARACTER_1 = "http://render-";
+	private final static String LOGO_CHARACTER_2 = ".worldofwarcraft.com/character/";
+
 	private json.WoW wow;
 
 	public WoW (String regionName, String serverName, String playerName)
@@ -49,6 +52,11 @@ public class WoW
 	public String getAchievementPoints ()
 	{
 		return this.wow.getAchievementPoints();
+	}
+
+	public String getThumbnail (String regionName)
+	{
+		return LOGO_CHARACTER_1 + regionName + LOGO_CHARACTER_2 + this.wow.getThumbnail();
 	}
 
 	public String getMounts ()

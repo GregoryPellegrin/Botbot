@@ -24,7 +24,7 @@ public class DiscordMessage
 
 	public Message getHeroes (Heroes heroes, String player)
 	{
-		MessageBuilder messageBuilder = new MessageBuilder().append("").setEmbed(new EmbedBuilder().setColor(Color.BLUE).setAuthor("Heroes of the Stormm - Informations du joueur", null, LOGO_HEROES).setTitle(player).addField("Partie Rapide", heroes.getQuickMatchMMR(), false).addField("Ligue Héroïque", heroes.getHeroLeagueMMR(), false).addField("Ligue Héroïque par équipe", heroes.getTeamLeagueMMR(), false).addField("Partie Non Classé", heroes.getUnrankedDraftMMR(), false).build());
+		MessageBuilder messageBuilder = new MessageBuilder().append("").setEmbed(new EmbedBuilder().setColor(Color.BLUE).setAuthor("Heroes of the Stormmm - Informations du joueur", null, LOGO_HEROES).setTitle(player).addField("Partie Rapide", heroes.getQuickMatchMMR(), false).addField("Ligue Héroïque", heroes.getHeroLeagueMMR(), false).addField("Ligue Héroïque par équipe", heroes.getTeamLeagueMMR(), false).addField("Partie Non Classé", heroes.getUnrankedDraftMMR(), false).build());
 
 		return messageBuilder.build();
 	}

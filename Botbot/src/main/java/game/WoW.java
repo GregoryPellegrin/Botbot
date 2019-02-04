@@ -17,7 +17,7 @@ public class WoW
 		try
 		{
 			HttpClient httpClient = HttpClientBuilder.create().build();
-			HttpResponse httpResponse = httpClient.execute(new HttpGet("https://" + regionName + ".api.battle.net/wow/character/" + serverName + "/" + playerName + "?fields=statistics%2Cpvp%2Cmounts%2Citems%2Creputation&locale=fr_FR&apikey=" + key.ApiKey.BLIZZARD_API_KEY));
+			HttpResponse httpResponse = httpClient.execute(new HttpGet("https://" + regionName + ".api.blizzard.com/wow/character/" + serverName + "/" + playerName + "?fields=statistics%2Cpvp%2Cmounts%2Citems%2Creputation&locale=fr_FR&access_token=" + key.ApiKey.BLIZZARD_TOKEN));
 
 			this.wow = new Gson().fromJson(EntityUtils.toString(httpResponse.getEntity()).replaceAll("null", "0"), json.WoW.class);
 		} catch (IOException exception)
@@ -26,19 +26,9 @@ public class WoW
 		}
 	}
 
-	public String getAvatar (String regionName, String serverName, String playerName)
+	public String getName ()
 	{
-		try
-		{
-			HttpClient httpClient = HttpClientBuilder.create().build();
-			HttpResponse httpResponse = httpClient.execute(new HttpGet("https://" + regionName + ".api.battle.net/wow/character/" + serverName + "/" + playerName + "?locale=fr_FR&apikey=" + key.ApiKey.BLIZZARD_API_KEY));
-			json.WoW wow = new Gson().fromJson(EntityUtils.toString(httpResponse.getEntity()).replaceAll("null", "0"), json.WoW.class);
-
-			return "http://render-" + regionName + wow.getAvatar();
-		} catch (IOException exception)
-		{
-			return exception.getMessage();
-		}
+		return this.wow.getName();
 	}
 
 	public String getLevel ()

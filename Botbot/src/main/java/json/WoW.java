@@ -353,6 +353,11 @@ public class WoW
 		return this.items.averageItemLevel;
 	}
 
+	public String getName ()
+	{
+		return this.name;
+	}
+
 	public String getRealm ()
 	{
 		return this.realm;

@@ -30,12 +30,10 @@ public class DiscordListener implements EventListener
 				String messageIn = event.getMessage().getContentDisplay();
 				MessageChannel messageOut = event.getMessage().getChannel();
 
-				if (messageIn.equals("botbot wow week"))
-					messageOut.sendMessage(command.onWoWWeek()).complete();
+				if (messageIn.contains("botbot heroes"))
+					messageOut.sendMessage(command.onHeroesPlayer(messageIn)).complete();
 				else if (messageIn.contains("botbot wow"))
 					messageOut.sendMessage(command.onWoWPlayer(messageIn)).complete();
-				else if (messageIn.contains("botbot heroes"))
-					messageOut.sendMessage(command.onHeroesPlayer(messageIn)).complete();
 				else if (messageIn.contains("botbot"))
 					messageOut.sendMessage(command.onHelp()).complete();
 			}

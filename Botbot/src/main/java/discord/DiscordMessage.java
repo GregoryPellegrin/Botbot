@@ -57,7 +57,7 @@ public class DiscordMessage
 		//@formatter:off
 		MessageBuilder messageBuilder = new MessageBuilder().append("").setEmbed(new EmbedBuilder()
 			.setColor(Color.ORANGE)
-			.setAuthor("World of Warcraft - Informations du personnage", null, wow.getThumbnail(regionName))
+			.setAuthor("World of Warcraft - Informations du personnage", null, LOGO_WOW)
 			.setTitle(wow.getName() + " (" + wow.getAverageItemLevel() + " - " + wow.getLevel() + ")" + " - " + wow.getRealm())
 			.addField("Hauts faits", wow.getAchievementPoints(), false)
 			.addField("Montures", wow.getMounts(), false)
